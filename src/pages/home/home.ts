@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { DetailPage } from '../detail/detail'
+import { DetailPage } from '../detail/detail';
+import { ModalController } from 'ionic-angular';
+import { AddUserPage } from '../add-user/add-user';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { DetailPage } from '../detail/detail'
   templateUrl: 'home.html'
 })
 export class HomePage {
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
   }
 
@@ -36,6 +38,16 @@ export class HomePage {
 
   itemTapped(user){
     this.navCtrl.push(DetailPage, {user:user})
+  }
+
+  presentModal() {
+    let modal = this.modalCtrl.create(AddUserPage);
+    modal.onDidDismiss(data => {
+      if (data) {
+      this.users.push(data);
+      }
+    })
+    modal.present();
   }
 
 }
