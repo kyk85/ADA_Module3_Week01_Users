@@ -8,6 +8,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailPage } from '../pages/detail/detail';
 import { AddUserPage } from '../pages/add-user/add-user';
+import { EditUserPage } from '../pages/edit-user/edit-user';
+import { UserProvider } from '../providers/user/user';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { AddUserPage } from '../pages/add-user/add-user';
     MyApp,
     HomePage,
     DetailPage,
-    AddUserPage
+    AddUserPage,
+    EditUserPage
   ],
   imports: [
     BrowserModule,
@@ -26,12 +29,14 @@ import { AddUserPage } from '../pages/add-user/add-user';
     MyApp,
     HomePage,
     DetailPage,
-    AddUserPage
+    AddUserPage,
+    EditUserPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserProvider
   ]
 })
 export class AppModule {}

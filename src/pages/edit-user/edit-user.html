@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="secondary">
-    <ion-title>Add A User</ion-title>
+    <ion-title>Edit User</ion-title>
       <ion-buttons start>
           <button ion-button clear color="light" (click)="cancelModal()"><ion-icon name="arrow-back"></ion-icon></button>
       </ion-buttons> 
@@ -19,24 +19,24 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label floating>Name:</ion-label>
-    <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+    <ion-label>Name:</ion-label>
+    <ion-input type="text" placeholder="{{user.name}}" [(ngModel)]="editedUser.name"></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label floating>Email:</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+      <ion-label>Email:</ion-label>
+      <ion-input type="email" placeholder="{{user.email}}" [(ngModel)]="editedUser.email"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Image:</ion-label>
-    <ion-input type="text" [(ngModel)]="user.image"></ion-input>
+    <ion-label>Image:</ion-label>
+    <ion-input type="text" placeholder="{{user.image}}" [(ngModel)]="editedUser.image"></ion-input>
 </ion-item>
 
   <br>
 
   <ion-buttons start>
-      <button ion-button icon-left block color="light" (click)="closeModal()"><ion-icon name="add"></ion-icon>Submit</button>
+      <button ion-button icon-left block color="light" (click)="closeModal()"><ion-icon name="add"></ion-icon>Submit Edit</button>
   </ion-buttons> 
 
 
