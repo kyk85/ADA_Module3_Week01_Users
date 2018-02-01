@@ -1,6 +1,9 @@
 
 import { Injectable } from '@angular/core';
 
+import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage'
+
 /*
   Generated class for the UserProvider provider.
 
@@ -32,19 +35,59 @@ export class UserProvider {
     }
   ]
 
-  constructor() {
+  constructor(private alertCtrl:AlertController, public storage:Storage) {
     console.log('Hello UserProvider Provider');
   }
 
-  getAllUsers(){
-    return this.users;
+  getAllUsers(callback){ 
+    this.storage.get('user').then((val)=>{
+    this.users=JSON.parse(val);
+    callback(this.users);
+    })
   }
 
   addUser(user){
     this.users.push(user);
+    this.storage.set('user',JSON.stringify(this.users))
   }
 
-  editUser(user){
+  editUser(user,index){
+
+    //console.log(this.users.indexOf(user))
+    this.users[index]=user
+    this.storage.set('user',JSON.stringify(this.users))
   }
 
-}
+  deleteUser(user){
+    
+      let alert = this.alertCtrl.create({
+        title: 'Confirm Delete',
+        message: 'Are you sure you want tso delete this user?',
+        buttons: [
+          {
+            text:'Cancel',
+            role:'cancel',
+            handler:()=> {
+              console.log('Cancel Clicked');
+            }
+          },
+          {
+            text:'Delete',
+            handler: () => {
+              for (var i=0; i<this.users.length; i++){
+                if (this.users[i].name==user.name) {
+                  this.users.splice(i,1);
+                }
+              }
+            }
+
+          }
+        ]
+
+      });
+      alert.present();
+    }
+    
+  }
+
+

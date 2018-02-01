@@ -5,6 +5,7 @@ import { ModalController } from 'ionic-angular';
 import { AddUserPage } from '../add-user/add-user';
 import { EditUserPage } from '../edit-user/edit-user';
 import { UserProvider } from '../../providers/user/user';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -12,15 +13,17 @@ import { UserProvider } from '../../providers/user/user';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public userProvider : UserProvider) {
-    this.users=this.userProvider.getAllUsers();
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public userProvider : UserProvider, public storage:Storage) {
+    var self=this
+    this.userProvider.getAllUsers(function(users){
+      console.log(users)
+      self.users=users
+    });
 
-    console.log(this.users)
+    
   }
 
   users=[];
-
-  
 
   viewUser(user){
     this.navCtrl.push(DetailPage, {user:user})
@@ -30,9 +33,10 @@ export class HomePage {
     let modal = this.modalCtrl.create(EditUserPage,{user:user});
     modal.present();
     modal.onDidDismiss(data => {
-      if (data) {
-        this.userProvider.editUser(data);
-      }
+      var userIndex=this.users.indexOf(user)
+      //this.users[this.users.indexOf(user)]=data
+      this.userProvider.editUser(data,userIndex);
+      
     })
   }
 
@@ -45,6 +49,10 @@ export class HomePage {
       }
     })
     modal.present();
+  }
+
+  delete(user){
+    this.userProvider.deleteUser(user)
   }
 
 }

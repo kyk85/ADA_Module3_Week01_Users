@@ -28,17 +28,20 @@ export class EditUserPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl:ViewController) {
+    this.user=this.navParams.get('user');
   }
 
   ionViewDidLoad() {
-    this.user=this.navParams.get('user');
+    console.log(this.user)
     console.log('ionViewDidLoad EditUserPage');
+    //console.log(this.user);2
+    //console.log(this.editedUser)
   }
 
   closeModal(){
     //console.log(this.user);
-    this.user=this.editedUser;
-    this.viewCtrl.dismiss(this.user);
+    //console.log(this.editedUser)
+    this.viewCtrl.dismiss(this.editedUser);
   }
 
   cancelModal(){

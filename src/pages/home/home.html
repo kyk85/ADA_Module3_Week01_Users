@@ -18,14 +18,15 @@
         </ion-thumbnail>
         <h2>{{user.name}}</h2>
         <p>{{user.email}}</p>
+        <button ion-button color="edit" item-end (click)="viewUser(user)">View</button>
       </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="edit" item-end (click)="editUserModal(user)"><ion-icon name="build"></ion-icon>Edit</button>
-        <button ion-button color="danger" item-end (click)="editUserModal(user)"><ion-icon name="trash"></ion-icon>Delete</button>
-      </ion-item-options>
       <ion-item-options side="right">
-          <button ion-button color="edit" item-end (click)="viewUser(user)"><ion-icon name="eye"></ion-icon>View</button>
+        <button ion-button color="edit" item-end (click)="editUserModal(user)"><ion-icon name="build"></ion-icon>Edit</button>
+        <button ion-button color="danger" item-end (click)="delete(user)"><ion-icon name="trash"></ion-icon>Delete</button>
       </ion-item-options>
+      <!--<ion-item-options side="left">
+          <button ion-button color="edit" item-end (click)="viewUser(user)"><ion-icon name="eye"></ion-icon>View</button>
+      </ion-item-options>-->
     </ion-item-sliding>
   </ion-list> 
 </ion-content>

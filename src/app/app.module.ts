@@ -11,6 +11,10 @@ import { AddUserPage } from '../pages/add-user/add-user';
 import { EditUserPage } from '../pages/edit-user/edit-user';
 import { UserProvider } from '../providers/user/user';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { DataProvider } from '../providers/data/data';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { UserProvider } from '../providers/user/user';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +42,9 @@ import { UserProvider } from '../providers/user/user';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    DataProvider,
+    NativeStorage
   ]
 })
 export class AppModule {}

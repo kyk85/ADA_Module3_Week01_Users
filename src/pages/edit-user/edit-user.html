@@ -20,17 +20,17 @@
 
   <ion-item>
     <ion-label>Name:</ion-label>
-    <ion-input type="text" placeholder="{{user.name}}" [(ngModel)]="editedUser.name"></ion-input>
+    <ion-input type="text" value={{user.name}} [(ngModel)]="editedUser.name"></ion-input>
   </ion-item>
 
   <ion-item>
       <ion-label>Email:</ion-label>
-      <ion-input type="email" placeholder="{{user.email}}" [(ngModel)]="editedUser.email"></ion-input>
+      <ion-input type="email" value="{{user.email}}" [(ngModel)]="editedUser.email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Image:</ion-label>
-    <ion-input type="text" placeholder="{{user.image}}" [(ngModel)]="editedUser.image"></ion-input>
+    <ion-input type="text" value="{{user.image}}" [(ngModel)]="editedUser.image"></ion-input>
 </ion-item>
 
   <br>
