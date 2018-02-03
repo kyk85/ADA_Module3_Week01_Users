@@ -41,8 +41,13 @@ export class UserProvider {
 
   getAllUsers(callback){ 
     this.storage.get('user').then((val)=>{
-    this.users=JSON.parse(val);
-    callback(this.users);
+      if (val) {
+      this.users=JSON.parse(val);
+      callback(this.users);
+      } else {
+      this.users=[]
+      callback(this.users);
+      }
     })
   }
 
